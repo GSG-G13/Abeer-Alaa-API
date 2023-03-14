@@ -4,6 +4,7 @@ let dateBtn = document.querySelector("button");
 const date = document.querySelector("input");
 const apiKey = "CAUfhXpvrAO7B65ZdlhrhtM21bcb3oBuDFf4PEFv";
 const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=`;
+const travelsContainer = document.getElementById("travels");
 
 const httpRequest = (url, callBack) => {
     let xhr = new XMLHttpRequest();
@@ -121,11 +122,11 @@ const createElement = (travel) => {
     iconDiv.textContent = "Company";
     let icon = document.createElement("img");
     icon.src = travel.links.patch.small;
-    let elementArray = [divContent,imgContainer,txtContainer,travelImg,name,date,flightNumber,videoLink,description,iconDiv];
+    let elementArray = [divContent, imgContainer, txtContainer, travelImg, name, date, flightNumber, videoLink, description, iconDiv];
     addElementToPage(elementArray);
 };
 
-const addElementToPage=(Array)=>{
+const addElementToPage = (Array) => {
     Array[1].appendChild(Array[3]);
     Array[2].appendChild(Array[4]);
     Array[2].appendChild(Array[5]);
@@ -138,10 +139,6 @@ const addElementToPage=(Array)=>{
     travelsContainer.appendChild(Array[0]);
 };
 
-dateBtn.addEventListener("click", () => {
-    travelsContainer.innerHTML = '';
-    httpRequest(urlSpaceX, getDateEvents);
-});
 
 
 dateBtn.addEventListener("click", () => {
@@ -150,6 +147,7 @@ dateBtn.addEventListener("click", () => {
         checkVideoOrImg(data);
         createDom(data);
     });
+    travelsContainer.innerHTML = '';
     httpRequest(urlSpaceX, getDateEvents);
 });
 
