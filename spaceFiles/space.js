@@ -74,7 +74,6 @@ const checkVideoOrImg = (data) => {
 
 getMedia.addEventListener("click",() => {
     httpRequest(`${url}${date.value}`,(data)=> {
-    console.log(data)
     wrapper.innerHTML = ""
     checkVideoOrImg(data) ;
     createDom(data);

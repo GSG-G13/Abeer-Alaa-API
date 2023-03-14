@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Semi+Condensed:ital,wght@0,400;0,700;1,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Sofia Sans Semi Condensed', sans-serif;
+}
+
+body {
+    background-color: #242424;
+    color: #fff;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    padding-top: 30px;
+
+    flex-direction: column;
+}
+
+.input-date {
+    width: 400px;
+}
+
+.input-date input {
+    width: 80%;
+    padding: 5px 10px;
+    box-shadow: none;
+    outline: none;
+    border: 1px solid #242424;
+}
+
+.input-date button {
+    width: 100px;
+    background-color: #ccc;
+    outline: none;
+    border: 0;
+    padding: 6px 10px;
+    border-radius: 0 5px 5px 0px;
+    cursor: pointer;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding: 20px;
+    box-shadow: 2px 0px 10px rgba(255, 255, 255);
+}
+
+.wrapper img,
+.wrapper iframe {
+    width: 400px;
+    height: 400px;
+    border-radius: 20px;
+}
+
+.details {
+    margin-left: 20px;
+}
+
+.details p {
+    font-size: 14px;
+
+    margin-bottom: 5px;
+}
+
+.details div {
+    font-size: 15px;
+    margin-top: 12px;
+}
+
+@media screen and (max-width:768px) {
+
+    .input-date {
+        width: 300px;
+    }
+
+    .wrapper {
+        width: 100%;
+        box-shadow: none;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .wrapper img,
+    .wrapper iframe {
+        width: 350px;
+        height: 350px;
+        max-width: 100%;
+    }
+
+    .details {
+        margin-top: 20px;
+        margin-left: 0;
+        text-align: center;
+    }
+
+}
