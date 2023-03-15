@@ -1,29 +1,165 @@
-const sliderImages = Array.from(document.querySelectorAll('.container img'));
-const nextButton = document.getElementById('next');
-const prevButton = document.getElementById('prev');
-const slidesCount = sliderImages.length;
+const urlSpaceX = "https://api.spacexdata.com/v5/launches";
+const wrapper = document.querySelector(".wrapper");
+let dateBtn = document.querySelector("button");
+const date = document.querySelector("input");
+const apiKey = "CAUfhXpvrAO7B65ZdlhrhtM21bcb3oBuDFf4PEFv";
+const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=`;
+const travelsContainer = document.getElementById("travels");
 
-let currentSlide = 1;
+const httpRequest = (url, callBack) => {
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
+    xhr.send();
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            let data = JSON.parse(xhr.responseText);
+            if (callBack) {
+                callBack(data);
+            }
 
-const theChecker = () => {
-sliderImages[currentSlide -1].classList.add('active');
-   currentSlide == 1 ? prevButton.classList.add('disabled')
-   :prevButton.classList.remove('disabled');
-  
-  currentSlide == slidesCount ? nextButton.classList.add('disabled')
-  :nextButton.classList.remove('disabled');
-  if(currentSlide === 1) {
-    currentSlide = 1
-  }
-   if(currentSlide === slidesCount) {
-    currentSlide = slidesCount
-    clearInterval(myInterval)
+        } else if (xhr.status == 400) {
+            wrapper.innerHTML = ""
+            errorStatus()
+        }
 
-  }
-  currentSlide++
+    }
+
 }
 
-const myInterval = setInterval(theChecker,1000)
+const errorStatus = () => {
+    let errDiv = document.createElement("div");
+    errDiv.className = "edd-div";
+    let imgError = document.createElement("img");
+    imgError.src = "../img/404.png";
+    errDiv.appendChild(imgError);
+    wrapper.appendChild(errDiv);
+
+}
 
 
+const createDom = (data) => {
+    let details = document.createElement("div");
+    details.className = "details";
+    let date = document.createElement("p");
+    date.textContent = data.date;
+    details.appendChild(date);
+
+    let title = document.createElement("h2");
+    title.textContent = data.title;
+    details.appendChild(title);
+
+    let explain = document.createElement("div");
+    explain.textContent = data.explanation;
+    details.appendChild(explain);
+    wrapper.appendChild(details);
+}
+
+const checkVideoOrImg = (data) => {
+
+    if (data.media_type === "video") {
+        let iframe = document.createElement("iframe");
+        iframe.setAttribute("frameborder", "0")
+        iframe.src = data.url;
+        wrapper.appendChild(iframe);
+
+    } else {
+
+        let img = document.createElement("img");
+        img.src = data.url;
+        wrapper.appendChild(img);
+    }
+}
+
+
+// ===========================================================
+
+const getDateEvents = (data) => {
+    const year = document.getElementById("date").value.slice(0, 4);
+    data.forEach(travel => {
+        if (year && travel.date_utc.includes(year)) {
+            createElement(travel);
+        }
+    });
+};
+
+const createElement = (travel) => {
+    let divContent = document.createElement("div");
+    divContent.className = "travel";
+    let imgContainer = document.createElement("div");
+    imgContainer.className = "img-container";
+    let travelImg = document.createElement("img");
+    travelImg.className = "travel-img"
+    if (travel.links.flickr.original.length > 0) {
+        travelImg.src = travel.links.flickr.original[0];
+    } else {
+        travelImg.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSALyZZ_-LxKqSRbuunnBH1EukyciH8xvJ5QrircWFyCkrYzBkv0pISEekdFXJYniJVOv8&usqp=CAU';
+    };
+    let txtContainer = document.createElement("div");
+    txtContainer.className = "txt-container";
+    let name = document.createElement("h2");
+    name.textContent = travel.name;
+    let date = document.createElement("p");
+    date.className = "date";
+    date.textContent = travel.date_utc.slice(0, 10);
+    let flightNumber = document.createElement("span");
+    flightNumber.textContent = `flight Number: ${travel.flight_number}`;
+    let videoLink = document.createElement("a");
+    videoLink.href = travel.links.webcast;
+    videoLink.title = "Watch Video";
+    videoLink.id = "watch-video";
+    let vidIco = document.createElement('img');
+    vidIco.src = "../img/ve.png";
+    let videoDiv = document.createElement("div");
+    videoDiv.className = "video-div";
+    videoLink.appendChild(vidIco);
+    videoDiv.append(videoLink);
+    let description = document.createElement("p");
+    description.className = "description";
+    if (travel.details) {
+        description.textContent = travel.details;
+    } else {
+        description.textContent = "default description";
+    };
+    let icons = document.createElement("div");
+    icons.className = "icons"
+    let iconDiv = document.createElement("div");
+    iconDiv.className = "icon-div";
+    iconDiv.textContent = "Company";
+    let icoUrl = document.createElement("a");
+    icoUrl.className = "ico-url";
+    icoUrl.href = "https://www.space.com/";
+    let icon = document.createElement("img");
+    icon.className = "ico";
+    icon.src = travel.links.patch.small;
+    icoUrl.appendChild(icon);
+    iconDiv.appendChild(icoUrl);
+    icons.appendChild(iconDiv);
+    icons.appendChild(videoDiv);
+    let elementArray = [divContent, imgContainer, txtContainer, travelImg, name, date, flightNumber, description, icons];
+    addElementToPage(elementArray);
+};
+
+const addElementToPage = (Array) => {
+    Array[1].appendChild(Array[3]);
+    Array[2].appendChild(Array[4]);
+    Array[2].appendChild(Array[5]);
+    Array[2].appendChild(Array[6]);
+    Array[2].appendChild(Array[7]);
+    Array[2].appendChild(Array[8]);
+    Array[0].appendChild(Array[1]);
+    Array[0].appendChild(Array[2]);
+    travelsContainer.appendChild(Array[0]);
+};
+
+
+
+dateBtn.addEventListener("click", () => {
+    httpRequest(`${url}${date.value}`, (data) => {
+        wrapper.innerHTML = "";
+        checkVideoOrImg(data);
+        createDom(data);
+    });
+    travelsContainer.innerHTML = '';
+    httpRequest(urlSpaceX, getDateEvents);
+});
 
