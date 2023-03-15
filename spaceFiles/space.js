@@ -105,7 +105,13 @@ const createElement = (travel) => {
     flightNumber.textContent = `flight Number: ${travel.flight_number}`;
     let videoLink = document.createElement("a");
     videoLink.href = travel.links.webcast;
-    videoLink.textContent = "To view the video of the trip,";
+    videoLink.title = "Watch Video";
+    videoLink.id = "watch-video";
+    let vidIco = document.createElement('img');
+    // vidIco.src = ""
+    let videoDiv = document.createElement("div");
+    videoDiv.textContent ="To view the video of the trip,"
+    videoDiv.append(videoLink)
     let description = document.createElement("p");
     description.className = "description";
     if (travel.details) {
