@@ -15,11 +15,11 @@ const httpRequest = (url, callBack) => {
             let data = JSON.parse(xhr.responseText);
             if (callBack) {
                 callBack(data);
-            } else if (xhr.status == 400) {
-                wrapper.innerHTML = ""
-                errorStatus()
             }
 
+        } else if (xhr.status == 400) {
+            wrapper.innerHTML = ""
+            errorStatus()
         }
 
     }
@@ -27,13 +27,12 @@ const httpRequest = (url, callBack) => {
 }
 
 const errorStatus = () => {
-    let msgError = document.createElement("h3");
-    msgError.className = "msg";
-    msgError.textContent = "Not Found!!!";
-    wrapper.appendChild(msgError);
+    let errDiv = document.createElement("div");
+    errDiv.className = "edd-div";
     let imgError = document.createElement("img");
-    imgError.src = "../img/error.png";
-    wrapper.appendChild(imgError)
+    imgError.src = "../img/404.png";
+    errDiv.appendChild(imgError)
+    wrapper.appendChild(errDiv)
 
 }
 
@@ -89,6 +88,7 @@ const createElement = (travel) => {
     let imgContainer = document.createElement("div");
     imgContainer.className = "img-container";
     let travelImg = document.createElement("img");
+    travelImg.className = "travel-img"
     if (travel.links.flickr.original.length > 0) {
         travelImg.src = travel.links.flickr.original[0];
     } else {
@@ -102,14 +102,10 @@ const createElement = (travel) => {
     date.className = "date";
     date.textContent = travel.date_utc.slice(0, 10);
     let flightNumber = document.createElement("span");
-    flightNumber.textContent = travel.flight_number;
-    let videoLink = document.createElement("p");
-    videoLink.className = "video-link";
-    videoLink.textContent = 'To view the video of the trip, ';
-    let link = document.createElement("a");
-    link.href = travel.links.webcast;
-    link.textContent = "click here";
-    videoLink.appendChild(link);
+    flightNumber.textContent = `flight Number: ${travel.flight_number}`;
+    let videoLink = document.createElement("a");
+    videoLink.href = travel.links.webcast;
+    videoLink.textContent = "To view the video of the trip,";
     let description = document.createElement("p");
     description.className = "description";
     if (travel.details) {
@@ -118,10 +114,16 @@ const createElement = (travel) => {
         description.textContent = "default description";
     };
     let iconDiv = document.createElement("div");
-    iconDiv.className = "icon";
+    iconDiv.className = "icon-div";
     iconDiv.textContent = "Company";
+    let icoUrl = document.createElement("a")
+    icoUrl.className = "ico-url"
+    icoUrl.href = "https://www.space.com/"
     let icon = document.createElement("img");
+    icon.className = "ico"
     icon.src = travel.links.patch.small;
+    icoUrl.appendChild(icon)
+    iconDiv.appendChild(icoUrl)
     let elementArray = [divContent, imgContainer, txtContainer, travelImg, name, date, flightNumber, videoLink, description, iconDiv];
     addElementToPage(elementArray);
 };
