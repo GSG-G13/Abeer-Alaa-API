@@ -6,6 +6,7 @@ const apiKey = "CAUfhXpvrAO7B65ZdlhrhtM21bcb3oBuDFf4PEFv";
 const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=`;
 const travelsContainer = document.getElementById("travels");
 
+
 const httpRequest = (url, callBack) => {
     let xhr = new XMLHttpRequest();
     xhr.open("GET", url, true);
