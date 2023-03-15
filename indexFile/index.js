@@ -1,11 +1,12 @@
 const urlSpaceX = "https://api.spacexdata.com/v5/launches";
 const wrapper = document.querySelector(".wrapper");
-let dateBtn = document.querySelector("button");
 const date = document.querySelector("input");
 const apiKey = "CAUfhXpvrAO7B65ZdlhrhtM21bcb3oBuDFf4PEFv";
 const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=`;
 const travelsContainer = document.getElementById("travels");
 const searchBtn = document.getElementById("search-btn");
+let dateBtn = document.querySelector("button");
+
 
 
 
@@ -135,7 +136,7 @@ const createElement = (travel) => {
     } else {
         description.textContent = "A journey to the Moon is a once-in-a-lifetime experience. From blasting off into space, to witnessing the Earth from a unique perspective, to experiencing the Moon's low gravity and barren landscape, it's a trip that few humans have ever had the opportunity to take. As space technology continues to evolve, it's a destination that could become increasingly accessible in the future.";
     };
-    
+
     let icons = document.createElement("div")
     icons.className = "icons";
     let iconDiv = document.createElement("div");
