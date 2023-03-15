@@ -109,9 +109,11 @@ const createElement = (travel) => {
     videoLink.title = "Watch Video";
     videoLink.id = "watch-video";
     let vidIco = document.createElement('img');
-    // vidIco.src = ""
+    vidIco.src = "../img/v.png"
     let videoDiv = document.createElement("div");
-    videoDiv.textContent ="To view the video of the trip,"
+    videoDiv.className = "video-div"
+    videoDiv.textContent ="To view the video of the trip =>"
+    videoLink.appendChild(vidIco)
     videoDiv.append(videoLink)
     let description = document.createElement("p");
     description.className = "description";
@@ -120,6 +122,8 @@ const createElement = (travel) => {
     } else {
         description.textContent = "default description";
     };
+    let icons = document.createElement("div")
+    icons.className= "icons"
     let iconDiv = document.createElement("div");
     iconDiv.className = "icon-div";
     iconDiv.textContent = "Company";
@@ -131,7 +135,9 @@ const createElement = (travel) => {
     icon.src = travel.links.patch.small;
     icoUrl.appendChild(icon)
     iconDiv.appendChild(icoUrl)
-    let elementArray = [divContent, imgContainer, txtContainer, travelImg, name, date, flightNumber, videoLink, description, iconDiv];
+    icons.appendChild(iconDiv)
+    icons.appendChild(videoDiv)
+    let elementArray = [divContent, imgContainer, txtContainer, travelImg, name, date, flightNumber, description, icons];
     addElementToPage(elementArray);
 };
 
@@ -142,7 +148,6 @@ const addElementToPage = (Array) => {
     Array[2].appendChild(Array[6]);
     Array[2].appendChild(Array[7]);
     Array[2].appendChild(Array[8]);
-    Array[2].appendChild(Array[9]);
     Array[0].appendChild(Array[1]);
     Array[0].appendChild(Array[2]);
     travelsContainer.appendChild(Array[0]);
