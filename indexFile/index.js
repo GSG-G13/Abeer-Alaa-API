@@ -109,7 +109,7 @@ const createElement = (travel) => {
     videoLink.title = "Watch Video";
     videoLink.id = "watch-video";
     let vidIco = document.createElement('img');
-    vidIco.src = "../img/v.png"
+    vidIco.src = "../img/ve.png"
     let videoDiv = document.createElement("div");
     videoDiv.className = "video-div"
     videoDiv.textContent ="To view the video of the trip =>"

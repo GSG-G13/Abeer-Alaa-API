@@ -1,44 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="indexFiles/style.css">
-    <title>Spaced</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
-    <link rel="stylesheet" href="indexFiles/style.css">
-
+    <link rel="stylesheet" href="indexFile/style.css">
+    <title>Document</title>
 </head>
-
 <body>
-    <header>
-    <img src="img/logoSpace.png" alt="">
-
-    <a href="spaceFiles/spase.html" class="next-page">
-        <i class="fa-solid fa-arrow-right"></i>
-    </a>
- </header>
-
-    <div class="slider-container">
-        <div class="container">
-            <img decoding="async" src="img/slide1.webp" alt="slide 1" />
-            <img decoding="async" src="img/slide2.webp" alt="slide 2" />
-            <img decoding="async" src="img/slide3.webp" alt="slide 3" />
-            <img decoding="async" src="img/slide4.webp" alt="slide 4" />
+    <div class="container flex">
+        <h1>Picture Of The Day</h1>
+        <div class="input-date">
+            <input type="date" id="date">
+            <button type="button" name="button">Get Media</button>
         </div>
     </div>
-
-
-
-
-    <div class="slider-controls">
-        <i class="fa-solid fa-backward prev" id="prev"></i>
-        <i class="fa-solid fa-forward next" id="next"></i>
+    <div class="wrapper">
+        <div></div>
     </div>
-
+    <section class="travels-section">
+        <div class="travels" id="travels"></div>
+    </section>
     <script src="indexFiles/index.js"></script>
 </body>
-
 </html>
