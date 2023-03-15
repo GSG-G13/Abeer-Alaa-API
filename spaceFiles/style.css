@@ -10,6 +10,9 @@
 body {
     background-image: url(../img/32499956_7756629.jpg);
     background-size: cover;
+    backdrop-filter: brightness(0.5);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: #fff;
 }
 
@@ -128,9 +131,18 @@ body {
     flex-direction: column;
     line-height: 30px;
 }
-.icon-div{
+.icons{
+    height: 50px;
     display: flex;
-
+    align-items: center;
+    justify-content: space-evenly;
+}
+.icon-div,
+.video-div{
+    gap: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .ico{
