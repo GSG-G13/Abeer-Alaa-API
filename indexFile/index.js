@@ -31,7 +31,7 @@ const errorStatus = () => {
     let errDiv = document.createElement("div");
     errDiv.className = "edd-div";
     let imgError = document.createElement("img");
-    imgError.src = "../img/404.png";
+    imgError.src = "../img/400 Error Bad Request.png";
     errDiv.appendChild(imgError)
     wrapper.appendChild(errDiv)
 
