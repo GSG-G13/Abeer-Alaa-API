@@ -20,19 +20,15 @@ const httpRequest = (url, callBack, search) => {
                 if (search) {
                     callBack(data, search);
                 } else {
-
                     callBack(data);
                 }
-
             }
 
         } else if (xhr.status == 400) {
-            wrapper.innerHTML = ""
-            errorStatus()
+            wrapper.innerHTML = "";
+            errorStatus();
         }
-
     }
-
 }
 
 const errorStatus = () => {
@@ -40,8 +36,8 @@ const errorStatus = () => {
     errDiv.className = "edd-div";
     let imgError = document.createElement("img");
     imgError.src = "../img/400 Error Bad Request.png";
-    errDiv.appendChild(imgError)
-    wrapper.appendChild(errDiv)
+    errDiv.appendChild(imgError);
+    wrapper.appendChild(errDiv);
 
 }
 
@@ -67,12 +63,10 @@ const checkVideoOrImg = (data) => {
 
     if (data.media_type === "video") {
         let iframe = document.createElement("iframe");
-        iframe.setAttribute("frameborder", "0")
+        iframe.setAttribute("frameborder", "0");
         iframe.src = data.url;
         wrapper.appendChild(iframe);
-
     } else {
-
         let img = document.createElement("img");
         img.src = data.url;
         wrapper.appendChild(img);
@@ -85,15 +79,13 @@ const checkVideoOrImg = (data) => {
 const getDateEvents = (data, search) => {
     const year = document.getElementById("date").value.slice(0, 4);
     let nameInput = document.getElementById("name-input").value;
-    console.log(menubar)
+
     if (search) {
         data.forEach((travel) => {
             if (travel.name.includes(nameInput)) {
-                createElement(travel)
+                createElement(travel);
             }
-
-        })
-
+        });
 
     } else {
         data.forEach(travel => {
@@ -110,7 +102,7 @@ const createElement = (travel) => {
     let imgContainer = document.createElement("div");
     imgContainer.className = "img-container";
     let travelImg = document.createElement("img");
-    travelImg.className = "travel-img"
+    travelImg.className = "travel-img";
     if (travel.links.flickr.original.length > 0) {
         travelImg.src = travel.links.flickr.original[0];
     } else {
@@ -130,35 +122,38 @@ const createElement = (travel) => {
     videoLink.title = "Watch Video";
     videoLink.id = "watch-video";
     let vidIco = document.createElement('img');
-    vidIco.src = "../img/ve.png"
+    vidIco.src = "../img/ve.png";
     let videoDiv = document.createElement("div");
-    videoDiv.className = "video-div"
-    videoLink.appendChild(vidIco)
-    videoDiv.append(videoLink)
+    videoDiv.className = "video-div";
+    videoLink.appendChild(vidIco);
+    videoDiv.append(videoLink);
     let description = document.createElement("p");
     description.className = "description";
+
     if (travel.details) {
         description.textContent = travel.details;
     } else {
         description.textContent = "A journey to the Moon is a once-in-a-lifetime experience. From blasting off into space, to witnessing the Earth from a unique perspective, to experiencing the Moon's low gravity and barren landscape, it's a trip that few humans have ever had the opportunity to take. As space technology continues to evolve, it's a destination that could become increasingly accessible in the future.";
     };
+    
     let icons = document.createElement("div")
-    icons.className = "icons"
+    icons.className = "icons";
     let iconDiv = document.createElement("div");
     iconDiv.className = "icon-div";
     iconDiv.textContent = "Company";
-    let icoUrl = document.createElement("a")
-    icoUrl.setAttribute("target", "_blank")
-    icoUrl.className = "ico-url"
-    icoUrl.href = "https://www.space.com/"
+    let icoUrl = document.createElement("a");
+    icoUrl.setAttribute("target", "_blank");
+    icoUrl.className = "ico-url";
+    icoUrl.href = "https://www.space.com/";
     let icon = document.createElement("img");
-    icon.className = "ico"
-    if (travel.links.patch.small) {
+    icon.className = "ico";
 
+    if (travel.links.patch.small) {
         icon.src = travel.links.patch.small;
     } else {
         icon.src = '../img/dlogo.jpg'
     }
+
     icoUrl.appendChild(icon)
     iconDiv.appendChild(icoUrl)
     icons.appendChild(iconDiv)
@@ -194,5 +189,5 @@ dateBtn.addEventListener("click", () => {
 
 searchBtn.addEventListener("click", () => {
     travelsContainer.innerHTML = '';
-    httpRequest(urlSpaceX, getDateEvents, true)
+    httpRequest(urlSpaceX, getDateEvents, true);
 })
