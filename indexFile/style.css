@@ -58,6 +58,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 20px;
     height: 20px;
     border-width: thin;
+    transition: all 0.3s;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    transform: scale(1.2);
 }
 
 .input-date button {
@@ -70,6 +75,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 15px 20px;
     background-color:#C182B4;
     font-size: 20px;
+    transition: all 0.3s;
+}
+
+.input-date button:hover {
+    background-color: #ae5e9e;
 }
 
 .wrapper {
@@ -103,18 +113,34 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-top: 12px;
 }
 
+.wrapper .edd-div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+    position: relative;
+    padding: 20px;
+    
+}
 
 .wrapper .edd-div img{
-    width: 100%;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
+    width: 250px;
+    height: 250px;
+    background-color: #C182B4;
+}
+
+.wrapper .edd-div h3 {
+    font-size: 50px;
+    color: #ddd;
+   position: absolute;
+   /* top: 0; */
+   bottom: -20px;
+
 }
 .travels-section{
     margin-top: 40px;
     padding: 20px;
-    box-shadow: 2px 0px 10px rgba(255, 255, 255);
 
 }
 .travels{
@@ -174,6 +200,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: white;
     text-decoration: none;
 }
+
+
 /* 
 @media screen and (max-width:576px) and (max-width:786px){
 
