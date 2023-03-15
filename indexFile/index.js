@@ -5,9 +5,11 @@ const date = document.querySelector("input");
 const apiKey = "CAUfhXpvrAO7B65ZdlhrhtM21bcb3oBuDFf4PEFv";
 const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=`;
 const travelsContainer = document.getElementById("travels");
+const searchBtn = document.getElementById("search-btn");
 
 
-const httpRequest = (url, callBack) => {
+
+const httpRequest = (url, callBack, search) => {
     let xhr = new XMLHttpRequest();
     xhr.open("GET", url, true);
     xhr.send();
@@ -15,7 +17,13 @@ const httpRequest = (url, callBack) => {
         if (xhr.readyState == 4 && xhr.status == 200) {
             let data = JSON.parse(xhr.responseText);
             if (callBack) {
-                callBack(data);
+                if (search) {
+                    callBack(data, search);
+                } else {
+
+                    callBack(data);
+                }
+
             }
 
         } else if (xhr.status == 400) {
@@ -74,13 +82,26 @@ const checkVideoOrImg = (data) => {
 
 // ===========================================================
 
-const getDateEvents = (data) => {
+const getDateEvents = (data, search) => {
     const year = document.getElementById("date").value.slice(0, 4);
-    data.forEach(travel => {
-        if (year && travel.date_utc.includes(year)) {
-            createElement(travel);
-        }
-    });
+    let nameInput = document.getElementById("name-input").value;
+    console.log(menubar)
+    if (search) {
+        data.forEach((travel) => {
+            if (travel.name.includes(nameInput)) {
+                createElement(travel)
+            }
+
+        })
+
+
+    } else {
+        data.forEach(travel => {
+            if (year && travel.date_utc.includes(year)) {
+                createElement(travel);
+            }
+        });
+    }
 };
 
 const createElement = (travel) => {
@@ -112,7 +133,6 @@ const createElement = (travel) => {
     vidIco.src = "../img/ve.png"
     let videoDiv = document.createElement("div");
     videoDiv.className = "video-div"
-    videoDiv.textContent ="To view the video of the trip =>"
     videoLink.appendChild(vidIco)
     videoDiv.append(videoLink)
     let description = document.createElement("p");
@@ -120,19 +140,25 @@ const createElement = (travel) => {
     if (travel.details) {
         description.textContent = travel.details;
     } else {
-        description.textContent = "default description";
+        description.textContent = "A journey to the Moon is a once-in-a-lifetime experience. From blasting off into space, to witnessing the Earth from a unique perspective, to experiencing the Moon's low gravity and barren landscape, it's a trip that few humans have ever had the opportunity to take. As space technology continues to evolve, it's a destination that could become increasingly accessible in the future.";
     };
     let icons = document.createElement("div")
-    icons.className= "icons"
+    icons.className = "icons"
     let iconDiv = document.createElement("div");
     iconDiv.className = "icon-div";
     iconDiv.textContent = "Company";
     let icoUrl = document.createElement("a")
+    icoUrl.setAttribute("target", "_blank")
     icoUrl.className = "ico-url"
     icoUrl.href = "https://www.space.com/"
     let icon = document.createElement("img");
     icon.className = "ico"
-    icon.src = travel.links.patch.small;
+    if (travel.links.patch.small) {
+
+        icon.src = travel.links.patch.small;
+    } else {
+        icon.src = '../img/dlogo.jpg'
+    }
     icoUrl.appendChild(icon)
     iconDiv.appendChild(icoUrl)
     icons.appendChild(iconDiv)
@@ -165,3 +191,8 @@ dateBtn.addEventListener("click", () => {
     httpRequest(urlSpaceX, getDateEvents);
 });
 
+
+searchBtn.addEventListener("click", () => {
+    travelsContainer.innerHTML = '';
+    httpRequest(urlSpaceX, getDateEvents, true)
+})

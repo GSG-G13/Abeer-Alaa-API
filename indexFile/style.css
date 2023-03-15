@@ -21,6 +21,12 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+.flex2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+}
 
 .container {
     padding: 20px;
@@ -34,8 +40,15 @@ body {
     display: flex;
     align-items: center;
 }
+.input-name{
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 20px;
+}
 
-.input-date input {
+.input-date input ,
+.input-name input{
     width: 500px;
     padding: 15px 20px;
     box-shadow: none;
@@ -50,8 +63,14 @@ body {
     margin-right: 20px;
 
 }
+.input-name input{
+    border-radius:50px 0;
+    padding:15px 30px;
 
-input[type="date"]::-webkit-calendar-picker-indicator {
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator ,
+input[type="text"]::-webkit-calendar-picker-indicator {
     opacity: 1;
     display: block;
     background: url(../img/calendar.png) no-repeat;
@@ -65,7 +84,8 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     transform: scale(1.2);
 }
 
-.input-date button {
+.input-date button,
+.input-name button {
     height: 100%;
     outline: none;
     color: #fff;
@@ -80,6 +100,10 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 
 .input-date button:hover {
     background-color: #ae5e9e;
+}
+.input-name button {
+    border-radius:  50px 50PX 50px 0;
+
 }
 
 .wrapper {
@@ -161,7 +185,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     height: 100%;
     border: 2px solid rgba(255, 255, 255);
     border-radius: 5px;
-    padding: 0 20px;
+    padding: 20px 20px;
 
 
 }
@@ -181,6 +205,8 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    margin-top: 25px;
+
 }
 .icon-div,
 .video-div{
@@ -194,6 +220,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     width: 50px;
     height: 50px;
     margin-left:50px;
+    border-radius: 50%;
 
 }
 #watch-video{
