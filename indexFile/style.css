@@ -129,9 +129,18 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     margin-left: 20px;
 }
 
+.details h2 {
+    letter-spacing: 3px;
+    font-size: 50px;
+}
+
+.details h2 span {
+    font-size: 60px;
+    color: #ae5e9e;
+}
+
 .details p {
     font-size: 14px;
-
     margin-bottom: 5px;
 }
 
@@ -161,10 +170,9 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     font-size: 50px;
     color: #ddd;
     position: absolute;
-   /* top: 0; */
     bottom: -20px;
-
 }
+
 .travels-section{
     margin-top: 40px;
     padding: 20px;
