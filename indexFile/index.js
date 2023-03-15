@@ -36,7 +36,7 @@ const errorStatus = () => {
     let errDiv = document.createElement("div");
     errDiv.className = "edd-div";
     let imgError = document.createElement("img");
-    imgError.src = "img/400 Error Bad Request.png";
+    imgError.src = "./img/400 Error Bad Request.png";
     errDiv.appendChild(imgError);
     wrapper.appendChild(errDiv);
 
@@ -123,7 +123,7 @@ const createElement = (travel) => {
     videoLink.title = "Watch Video";
     videoLink.id = "watch-video";
     let vidIco = document.createElement('img');
-    vidIco.src = "img/ve.png";
+    vidIco.src = "./img/ve.png";
     let videoDiv = document.createElement("div");
     videoDiv.className = "video-div";
     videoLink.appendChild(vidIco);
@@ -152,7 +152,7 @@ const createElement = (travel) => {
     if (travel.links.patch.small) {
         icon.src = travel.links.patch.small;
     } else {
-        icon.src = 'img/dlogo.jpg'
+        icon.src = './img/dlogo.jpg'
     }
 
     icoUrl.appendChild(icon)
