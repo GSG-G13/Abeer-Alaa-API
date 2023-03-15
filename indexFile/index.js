@@ -6,6 +6,7 @@ const apiKey = "CAUfhXpvrAO7B65ZdlhrhtM21bcb3oBuDFf4PEFv";
 const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=`;
 const travelsContainer = document.getElementById("travels");
 
+
 const httpRequest = (url, callBack) => {
     let xhr = new XMLHttpRequest();
     xhr.open("GET", url, true);
@@ -31,8 +32,8 @@ const errorStatus = () => {
     errDiv.className = "edd-div";
     let imgError = document.createElement("img");
     imgError.src = "../img/404.png";
-    errDiv.appendChild(imgError);
-    wrapper.appendChild(errDiv);
+    errDiv.appendChild(imgError)
+    wrapper.appendChild(errDiv)
 
 }
 
@@ -98,7 +99,7 @@ const createElement = (travel) => {
     txtContainer.className = "txt-container";
     let name = document.createElement("h2");
     name.textContent = travel.name;
-    let date = document.createElement("p");
+    let date = document.createElement("p")
     date.className = "date";
     date.textContent = travel.date_utc.slice(0, 10);
     let flightNumber = document.createElement("span");
@@ -108,11 +109,12 @@ const createElement = (travel) => {
     videoLink.title = "Watch Video";
     videoLink.id = "watch-video";
     let vidIco = document.createElement('img');
-    vidIco.src = "../img/ve.png";
+    vidIco.src = "../img/ve.png"
     let videoDiv = document.createElement("div");
-    videoDiv.className = "video-div";
-    videoLink.appendChild(vidIco);
-    videoDiv.append(videoLink);
+    videoDiv.className = "video-div"
+    videoDiv.textContent ="To view the video of the trip =>"
+    videoLink.appendChild(vidIco)
+    videoDiv.append(videoLink)
     let description = document.createElement("p");
     description.className = "description";
     if (travel.details) {
@@ -120,21 +122,21 @@ const createElement = (travel) => {
     } else {
         description.textContent = "default description";
     };
-    let icons = document.createElement("div");
-    icons.className = "icons"
+    let icons = document.createElement("div")
+    icons.className= "icons"
     let iconDiv = document.createElement("div");
     iconDiv.className = "icon-div";
     iconDiv.textContent = "Company";
-    let icoUrl = document.createElement("a");
-    icoUrl.className = "ico-url";
-    icoUrl.href = "https://www.space.com/";
+    let icoUrl = document.createElement("a")
+    icoUrl.className = "ico-url"
+    icoUrl.href = "https://www.space.com/"
     let icon = document.createElement("img");
-    icon.className = "ico";
+    icon.className = "ico"
     icon.src = travel.links.patch.small;
-    icoUrl.appendChild(icon);
-    iconDiv.appendChild(icoUrl);
-    icons.appendChild(iconDiv);
-    icons.appendChild(videoDiv);
+    icoUrl.appendChild(icon)
+    iconDiv.appendChild(icoUrl)
+    icons.appendChild(iconDiv)
+    icons.appendChild(videoDiv)
     let elementArray = [divContent, imgContainer, txtContainer, travelImg, name, date, flightNumber, description, icons];
     addElementToPage(elementArray);
 };
@@ -155,7 +157,7 @@ const addElementToPage = (Array) => {
 
 dateBtn.addEventListener("click", () => {
     httpRequest(`${url}${date.value}`, (data) => {
-        wrapper.innerHTML = "";
+        wrapper.innerHTML = ""
         checkVideoOrImg(data);
         createDom(data);
     });
