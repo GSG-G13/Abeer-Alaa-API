@@ -8,7 +8,8 @@
 }
 
 body {
-    background-color: #242424;
+    background-image: url(../img/32499956_7756629.jpg);
+    background-size: cover;
     color: #fff;
 }
 
@@ -96,6 +97,10 @@ body {
 }
 .travels{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .travels .travel{
     display: flex;
@@ -106,8 +111,9 @@ body {
     gap: 30px;
     width: 100%;
     height: 100%;
-    border: 1px solid #242424;
-    border-bottom: 2px solid rgba(255, 255, 255);
+    border: 2px solid rgba(255, 255, 255);
+    border-radius: 5px;
+    padding: 0 20px;
 
 
 }
@@ -132,6 +138,10 @@ body {
     height: 50px;
     margin-left:50px;
 
+}
+#watch-video{
+    color: white;
+    text-decoration: none;
 }
 
 @media screen and (max-width:576px) {
