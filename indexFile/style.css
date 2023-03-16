@@ -8,9 +8,7 @@
 }
 
 body {
-    background-image: url("../img/32499956_7756629.jpg");
-    background-size: cover;
-    backdrop-filter: brightness(0.5);
+    background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url("../img/32499956_7756629.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     color: #fff;
@@ -21,11 +19,10 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-.flex2{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+.travels-section .container {
     flex-direction: row-reverse;
+
 }
 
 .container {
