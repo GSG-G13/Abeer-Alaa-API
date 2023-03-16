@@ -34,7 +34,7 @@ All space flights are shown in many years and you can select the year to display
 
 # :link: Live Website <span id='live-website'></span>
 
-You are welcome to visit our website [Here. ](https://github.com/GSG-G13/Abeer-Alaa-API/)
+You are welcome to visit our website [Here. ](https://gsg-g13.github.io/Abeer-Alaa-API/)
 
 
 # ⚒️ Skills <span id='skills'></span>
