@@ -45,5 +45,5 @@ You are welcome to visit our website [Here. ](https://gsg-g13.github.io/Abeer-Al
 
 ## 🙌🏼 Team Members:
 - [Abeer Ayyad](https://github.com/AbeerAyad)
-- [alaa-hmade](https://github.com/alaaahmade)
+- [Alaa Ahmad](https://github.com/alaaahmade)
 
